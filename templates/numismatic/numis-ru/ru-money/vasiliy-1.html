@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="{{ session.get('language', 'en') }}">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ 'History of Everything' if session.get('language') == 'en' else 'История всего' }}</title>
+    <title>{{ 'History of Everything' if session.get('language') == 'en' else 'История Всего' }}</title>
     <link rel="stylesheet" href="/static/main.css">
 </head>
 <body>
@@ -69,24 +69,56 @@
             </div>
         </div>
     </header>
-    <main class="main main-su">
-        <div class="mid-container">
 
-            <form class="su-form" method="POST" action="/templates/refresh_password_2.html">
-                <h1 class="su-header-name h1-text">{{ 'Password Recovery' if session.get('language') == 'en' else 'Восстановление пароля' }}</h1>
-                <input type="hidden" name="email" value="{{ email }}">
-                <input type="text" class="email form-su-el emails-link-name" name="code" placeholder="{{ 'Write code from your email' if session.get('language') == 'en' else 'Введите код из вашей почты' }}" required>
-                <button type="submit" class="form-su-btn h5-text">{{ 'Verify' if session.get('language') == 'en' else 'Проверить' }}</button>
-            </form>
+    <main class="main">
+        <div class="num-container">
+            <div class="main-site-page-header num-header-old">
+                <h3 class="site-header h1-text num-ru-text">{{ 'Coins of Vasiliy I Dmitrievich' if session.get('language') == 'en' else 'Монеты Василия I Дмитриевича' }}</h3>
+            </div>
+            <div class="coins-items">
+                <div class="num-coins-category">
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Vasiliy-1-Dmitrievich/denga-novgorod-chekan-knyaz-na-trone-1-V1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Vasiliy-1-Dmitrievich/denga-novgorod-chekan-knyaz-na-trone-2-V1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Denga, Novgorod Chekan, Knyaz on throne' if session.get('language') == 'en' else 'Денга, Нижегородский чекан, Князь на троне' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Vasiliy-1-Dmitrievich/denga-pereeslavl-zalesskiy-1-V1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Vasiliy-1-Dmitrievich/denga-pereeslavl-zalesskiy-2-V1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Denga, Pereslavl-Zallesky' if session.get('language') == 'en' else 'Денга, Переславль-Заллеский' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Vasiliy-1-Dmitrievich/denga-samson-boruschiysya-so-lyvom-1-V1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Vasiliy-1-Dmitrievich/denga-samson-boruschiysya-so-lyvom-2-V1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Denga, Samson fighting a lion' if session.get('language') == 'en' else 'Денга; Самсон, борющийся со сльвом' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Vasiliy-1-Dmitrievich/denga-velikoye-knyazhestvo-moskovskoe-R1-1-V1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Vasiliy-1-Dmitrievich/denga-velikoye-knyazhestvo-moskovskoe-R1-2-V1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Denga, Grand Duchy of Moscow R1' if session.get('language') == 'en' else 'Денга, Великое княжество Московское R1' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Vasiliy-1-Dmitrievich/denga-velikoye-knyazhestvo-moskovskoe-R8-1-V1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Vasiliy-1-Dmitrievich/denga-velikoye-knyazhestvo-moskovskoe-R8-2-V1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Denga, Grand Duchy of Moscow R8' if session.get('language') == 'en' else 'Денга, Великое княжество Московское R8' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Vasiliy-1-Dmitrievich/denga-voin-s-mechom-i-toporom-smotryaschiy-vpravo-1-V1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Vasiliy-1-Dmitrievich/denga-voin-s-mechom-i-toporom-smotryaschiy-vpravo-2-V1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Denga, Warrior with sword and ax looking to the right' if session.get('language') == 'en' else 'Денга; Воин с мечом и топором, смотрящий вправо' }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
+
     <footer class="footer">
         <div class="main-container">
             <div class="contacts">
                 <div class="emails">
                     <div class="contacts-first-text">
                         <h5 class="contacts-first-text-name h5-text">
-                            {{ 'Have any questions? Write them on those e-mails:' if session.get('language') == 'en' else 'Есть вопросы? Напишите их на эти e-mail:' }}
+                            {{ 'Have any questions? Write them on those e-mails:' if session.get('language') == 'en' else 'Есть вопросы? Пишите их на эти e-mail:' }}
                         </h5>
                     </div>
                     <div class="emails-names">
@@ -128,7 +160,7 @@
             <div class="copyright">
                 <div class="copyright-info">
                     <img src="/static/img/copyright-icon.png" alt="copyright" class="copyright-photo">
-                    <span class="copyright-text">2024 - {{ 'History of Everything' if session.get('language') == 'en' else 'История всего' }}</span>
+                    <span class="copyright-text">2024 - {{ 'History of Everything' if session.get('language') == 'en' else 'История Всего' }}</span>
                 </div>
             </div>
         </div>

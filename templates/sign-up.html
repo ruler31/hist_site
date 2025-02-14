@@ -25,25 +25,23 @@
         }
 
         .flash-message.email_error {
-            background-color: #f44336;  /* Красный для email ошибок */
+            background-color: #f44336;
         }
 
         .flash-message.password_error {
-            background-color: #ff9800;  /* Оранжевый для паролей */
+            background-color: #ff9800;
         }
 
         .flash-message.password_strength_error {
-            background-color: #ff5722;  /* Темно-оранжевый для слабых паролей */
+            background-color: #ff5722;
         }
 
         .flash-message.username_error {
-            background-color: #607d8b;  /* Синий для ошибок с логином */
+            background-color: #607d8b;
         }
     </style>
 </head>
 <body>
-
-    <!-- Обработка флеш-сообщений -->
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for category, message in messages %}
@@ -53,8 +51,6 @@
             {% endfor %}
         {% endif %}
     {% endwith %}
-
-    <!-- Вверх сайта -->
     <header class="header">
         <div class="main-container">
             <div class="navbar">
@@ -117,8 +113,6 @@
             </div>
         </div>
     </header>
-
-    <!-- Основная часть страницы -->
     <main class="main main-su">
         <div class="mid-container">
             <form class="su-form" method="POST">
@@ -136,8 +130,6 @@
             </form>
         </div>
     </main>
-
-    <!-- Подвал -->
     <footer class="footer">
         <div class="main-container">
             <div class="contacts">
@@ -193,17 +185,17 @@
     </footer>
 
     <script>
-        // Показать флеш-сообщение и скрыть его через несколько секунд
+
         window.onload = function() {
             var flashMessages = document.querySelectorAll('.flash-message');
             flashMessages.forEach(function(msg) {
                 setTimeout(function() {
                     msg.classList.add('show');
-                }, 500);  // Показываем через 0.5 секунды
+                }, 500);
 
                 setTimeout(function() {
                     msg.classList.remove('show');
-                }, 4000);  // Скрываем через 4 секунды
+                }, 4000);
             });
         };
     </script>

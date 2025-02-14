@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="/static/main.css">
 </head>
 <body>
-
-    <!--Вверх сайта-->
-
     <header class="header">
         <div class="main-container">
             <div class="navbar">
@@ -108,7 +105,7 @@
                                                 .then(response => response.json())
                                                 .then(data => {
                                                     if (data.status === 'success') {
-                                                        button.closest('li').remove();  // Удаляем элемент из списка
+                                                        button.closest('li').remove();
                                                     } else {
                                                         console.error('Error updating favorites:', data.message);
                                                     }

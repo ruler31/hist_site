@@ -1,29 +1,13 @@
 import base64
 import random
 from datetime import datetime
-import os
 import sqlite3
-import requests
-import io
-import numpy as np
-from flask import Flask, render_template, request, jsonify, send_file, session
-from flask_login import login_required
-from pptx import Presentation
-from pptx.enum.shapes import MSO_SHAPE, MSO_CONNECTOR
-from pptx.util import Inches, Pt
-from pptx.enum.text import PP_ALIGN
-from pptx.dml.color import RGBColor
-from PIL import Image
-from bs4 import BeautifulSoup
-# from ollama import chat
-# from ollama import ChatResponse
+from flask import Flask, jsonify, session
 import smtplib
 import re
 from email.mime.text import MIMEText
-from deep_translator import GoogleTranslator
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, flash
 import bcrypt
-from flask_login import login_required, current_user, login_url
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
 app.secret_key = "yehbbcf83725gfbefuwfew08348gsfe732"
@@ -63,170 +47,6 @@ def initialize_db():
     """)
     conn.commit()
     conn.close()
-
-
-# def gpt_response(subject, century):
-#     response: ChatResponse = chat(model='llama3.2', messages=[
-#         {
-#             'role': 'user',
-#             'content': f"Tell us about {subject} in {century}century (how it was created, what materials it was made of), in 30 words",
-#         },
-#     ])
-#
-#     return response.message.content
-
-
-def google_search(query):
-    url = f"https://www.google.com/search?q={query}"
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
-    }
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:
-        soup = BeautifulSoup(response.text, "html.parser")
-        first_result = soup.select_one(".tF2Cxc")
-        if first_result:
-            title = first_result.select_one(".DKV0Md").text
-            link = first_result.select_one(".yuRUbf a")["href"]
-            snippet = first_result.select_one(".VwiC3b").text
-            return {"title": title, "link": link, "snippet": snippet}
-        else:
-            return "Результатов не найдено"
-    else:
-        return f"Ошибка при выполнении запроса: {response.status_code}"
-
-
-def remove_bg(image_path, threshold=240):
-    image = Image.open(image_path).convert("RGBA")
-    data = np.array(image)
-    mask = (data[:, :, :3].sum(axis=2) > threshold * 3)
-    data[mask, 3] = 0
-    result_image = Image.fromarray(data, mode="RGBA")
-    filename, file_extension = os.path.splitext(image_path)
-    result_image.save(filename + '.png')
-
-
-def add_resized_picture(slide, img_path, max_width, max_height, left, top):
-    img = Image.open(img_path)
-    width, height = img.size
-
-    scale = min(max_width / width, max_height / height)
-    new_width = int(width * scale)
-    new_height = int(height * scale)
-
-    slide.shapes.add_picture(img_path, left, top, width=Inches(new_width / 96), height=Inches(new_height / 96))
-
-
-def search_exact_items_as_dict(item_name):
-    conn = sqlite3.connect('db/items.db')
-    cursor = conn.cursor()
-    if session.get('language') == 'ru':
-        cursor.execute("SELECT century, item_name, image FROM items WHERE item_name = ?", (item_name,))
-    else:
-        cursor.execute("SELECT century, item_name_en, image FROM items WHERE item_name = ?", (item_name,))
-    rows = cursor.fetchall()
-
-    items = []
-    for row in rows:
-        item_dict = {
-            "century": row[0],
-            "item_name": row[1],
-            "image": row[2]
-        }
-        items.append(item_dict)
-
-    conn.close()
-    if not items:
-        for i in range(1, 5):
-            conn = sqlite3.connect(f'db/images/part{i}.db')
-            cursor = conn.cursor()
-
-            if session.get('language') == 'ru':
-                cursor.execute("SELECT century, item_name, image FROM items WHERE item_name = ?", (item_name,))
-            else:
-                cursor.execute("SELECT century, item_name_en, image FROM items WHERE item_name = ?", (item_name,))
-            rows = cursor.fetchall()
-
-            items = []
-            for row in rows:
-                item_dict = {
-                    "century": row[0],
-                    "item_name": row[1],
-                    "image": row[2]
-                }
-                items.append(item_dict)
-    if not items:
-        for i in range(1, 5):
-            conn = sqlite3.connect(f'db/images2/part{i}.db')
-            cursor = conn.cursor()
-
-            if session.get('language') == 'ru':
-                cursor.execute("SELECT century, item_name, image FROM items WHERE item_name = ?", (item_name,))
-            else:
-                cursor.execute("SELECT century, item_name_en, image FROM items WHERE item_name = ?", (item_name,))
-            rows = cursor.fetchall()
-
-            items = []
-            for row in rows:
-                item_dict = {
-                    "century": row[0],
-                    "item_name": row[1],
-                    "image": row[2]
-                }
-                items.append(item_dict)
-    if not items:
-        for i in range(1, 5):
-            conn = sqlite3.connect(f'db/items_database (112).db/part{i}.db')
-            cursor = conn.cursor()
-
-            if session.get('language') == 'ru':
-                cursor.execute("SELECT century, item_name, image FROM items WHERE item_name = ?", (item_name,))
-            else:
-                cursor.execute("SELECT century, item_name_en, image FROM items WHERE item_name = ?", (item_name,))
-            rows = cursor.fetchall()
-
-            items = []
-            for row in rows:
-                item_dict = {
-                    "century": row[0],
-                    "item_name": row[1],
-                    "image": row[2]
-                }
-                items.append(item_dict)
-    if not items:
-        conn = sqlite3.connect('db/items_database (10).db')
-        cursor = conn.cursor()
-
-        if session.get('language') == 'ru':
-            cursor.execute("SELECT century, item_name, image FROM items WHERE item_name = ?", (item_name,))
-        else:
-            cursor.execute("SELECT century, item_name_en, image FROM items WHERE item_name = ?", (item_name,))
-        rows = cursor.fetchall()
-
-        items = []
-        for row in rows:
-            item_dict = {
-                "century": row[0],
-                "item_name": row[1],
-                "image": row[2]
-            }
-            items.append(item_dict)
-
-    return items
-
-
-def int_to_roman(n):
-    roman_numerals = {
-        1: "I", 4: "IV", 5: "V", 9: "IX", 10: "X",
-        40: "XL", 50: "L", 90: "XC", 100: "C",
-        400: "CD", 500: "D", 900: "CM", 1000: "M"
-    }
-    result = ""
-    for value in sorted(roman_numerals.keys(), reverse=True):
-        while n >= value:
-            result += roman_numerals[value]
-            n -= value
-    return result
 
 
 def authenticate_user(user_name, password):
@@ -281,102 +101,6 @@ def change_password(email, password):
     conn.commit()
 
 
-def create_of_presentation(item_name):
-    a = item_name
-    prs = Presentation()
-    search_query = a
-    items = sorted(search_exact_items_as_dict(search_query), key=lambda x: int(x["century"]))
-
-    c = 0
-    for i in items:
-        c += 1
-        print(i)
-        century = i["century"]
-        sub = i["item_name"]
-        slide_layout = prs.slide_layouts[5]
-        slide = prs.slides.add_slide(slide_layout)
-        slide_width = prs.slide_width
-        slide_height = prs.slide_height
-        img_path = 'img1/back.png'
-        slide.shapes.add_picture(img_path, 0, 0, width=slide_width, height=slide_height)
-        add_resized_picture(slide, "img1/img_1.png", 1 * 96, 1 * 96, left=Inches(9), top=Inches(6.5))
-        title_box = slide.shapes.add_textbox(Inches(0.5), Inches(0.5), Inches(8), Inches(1))
-        title = title_box.text_frame
-        title.text = f"{sub} {century} век"
-        title.paragraphs[0].font.size = Pt(36)
-        title.paragraphs[0].font.bold = True
-        title.paragraphs[0].font.name = "Times New Roman"
-        title.paragraphs[0].alignment = PP_ALIGN.CENTER
-        text_box = slide.shapes.add_textbox(Inches(5.2), Inches(2), Inches(4), Inches(8))
-        text = text_box.text_frame
-        # f = gpt_response(sub, century)
-        # if session.get('language') == 'ru':
-        # f = GoogleTranslator(source='en', target='ru').translate(f)
-        # text.text = f
-        text.paragraphs[0].font.size = Pt(18)
-        text.paragraphs[0].font.name = "Times New Roman"
-        text.word_wrap = True
-        image = Image.open(io.BytesIO(i["image"]))
-        image_path = f"{sub}.png"
-        image.save(image_path)
-        max_width = 6 * 96
-        max_height = 3 * 96
-        add_resized_picture(slide, "img1/icon.png", 1 * 56, 1 * 56, left=Inches(4.5), top=Inches(1.95))
-        add_resized_picture(slide, image_path, max_width, max_height, left=Inches(1.2), top=Inches(2))
-        os.remove(image_path)
-
-        start_x = Inches(1)
-        y_position = Inches(5.5)
-        line_length = Inches(8)
-        num_centuries = 5
-        century_spacing = line_length / (num_centuries - 1)
-        line_shape = slide.shapes.add_connector(
-            MSO_CONNECTOR.STRAIGHT,
-            start_x, y_position, start_x + line_length, y_position
-        )
-        line_shape.line.width = Pt(2)
-        line_shape.line.color.rgb = RGBColor(0, 0, 0)
-
-        centuries = [
-            (f"{int_to_roman(int(century) - 2)} век"),
-            (f"{int_to_roman(int(century) - 1)} век"),
-            (f"{int_to_roman(int(century))} век"),
-            (f"{int_to_roman(int(century) + 1)} век"),
-            (f"{int_to_roman(int(century) + 2)} век")
-        ]
-
-        for i, century in enumerate(centuries):
-            x_position = start_x + i * century_spacing
-
-            century_shape = slide.shapes.add_shape(
-                MSO_SHAPE.OVAL,
-                left=x_position,
-                top=y_position - Inches(0.1),
-                width=Pt(12),
-                height=Pt(12)
-            )
-            century_shape.fill.solid()
-            if i == 0 or i == 1 or i == 3 or i == 4:
-                century_shape.fill.fore_color.rgb = RGBColor(0, 0, 255)
-            else:
-                century_shape.fill.fore_color.rgb = RGBColor(220, 20, 60)
-            textbox = slide.shapes.add_textbox(
-                left=x_position - Inches(0.3),
-                top=y_position + Inches(0.3),
-                width=Inches(1),
-                height=Inches(0.5)
-            )
-            text_frame = textbox.text_frame
-            p = text_frame.add_paragraph()
-            p.text = century
-            p.font.size = Pt(12)
-            p.font.bold = True
-            p.alignment = PP_ALIGN.CENTER
-    g = '1.pptx'
-    prs.save(g)
-    return g
-
-
 def get_user_history(username):
     conn = sqlite3.connect('db/users.db')
     cursor = conn.cursor()
@@ -396,16 +120,6 @@ def clear_user_history(username):
     conn.close()
 
 
-@app.route('/templates/create_of_presentation.html')
-def create_of_pr():
-    item_name = request.args.get('item_name', '')
-    if not item_name:
-        return "Item name not provided.", 400
-    create_of_presentation(item_name)
-    file_path = '1.pptx'
-    return send_file(file_path, as_attachment=True, download_name="presentation.pptx")
-
-
 @app.route('/')
 def index():
     username = session.get('username')
@@ -421,8 +135,8 @@ def main_page():
 @app.route('/update_favorites', methods=['POST'])
 def update_favorites():
     data = request.json
-    username = session.get('username')  # Получить текущего пользователя из сессии
-    item_url = data.get('item_url')  # URL страницы
+    username = session.get('username')
+    item_url = data.get('item_url')
     print(item_url)
     if not username or not item_url:
         return jsonify({'status': 'error', 'message': 'Username or item URL is missing'}), 400
@@ -430,20 +144,15 @@ def update_favorites():
     try:
         conn = sqlite3.connect('db/users.db')
         cursor = conn.cursor()
-
-        # Получить текущий список избранного
         cursor.execute("SELECT favorites FROM users WHERE user_name = ?", (username,))
         row = cursor.fetchone()
         if row:
-            favorites = row[0].split(';') if row[0] else []  # Используем ';' как разделитель
-
-            # Добавить или удалить URL
+            favorites = row[0].split(';') if row[0] else []
             if item_url in favorites:
-                favorites.remove(item_url)  # Удалить, если уже есть
+                favorites.remove(item_url)
             else:
-                favorites.append(item_url)  # Добавить, если нет
+                favorites.append(item_url)
 
-            # Обновить запись в базе данных
             updated_favorites = ';'.join(favorites)
             cursor.execute("UPDATE users SET favorites = ? WHERE user_name = ?", (updated_favorites, username))
             conn.commit()
@@ -1051,7 +760,6 @@ def history_of_events_WOW_2():
                     if b[j] in gdz.keys():
                         b[j] = gdz[b[j]]
                 g = b[0] + " " + b[1]
-                # Convert tuple to list to modify it
                 rows[i] = (g, rows[i][1])
 
         print(rows)
@@ -1089,7 +797,6 @@ def history_of_events_SWW_2():
                     if b[j] in gdz.keys():
                         b[j] = gdz[b[j]]
                 g = b[1] + " " + b[0]
-                # Convert tuple to list to modify it
                 rows[i] = (g, rows[i][1])
 
         print(rows)
@@ -1265,6 +972,28 @@ def num_15():
     username = session.get('username')
     return render_template('numismatic/numis-ru/ru-money/ivan-III.html', username=username)
 
+
+@app.route('/dmitriy-donskoy.html')
+def num_16():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/dmitriy-donskoy.html', username=username)
+
+
+@app.route('/konstantin-I.html')
+def num_17():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/konstantin-I.html', username=username)
+
+@app.route('/vasiliy-1.html')
+def num_18():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/vasiliy-1.html', username=username)
+
+
+@app.route('/vasiliy-2.html')
+def num_19():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/vasiliy-2.html', username=username)
 
 if __name__ == '__main__':
     initialize_db()

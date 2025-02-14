@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ 'History of Everything' if session.get('language') == 'en' else 'История всего' }}</title>
     <link rel="stylesheet" href="/static/main.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"> <!-- Slick Slider CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Подключаем jQuery -->
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script> <!-- Slick Slider JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script>
     <script src="/static/script.js"></script>
 </head>
 <body>
-
-    <!--Вверх сайта-->
-
     <header class="header">
         <div class="main-container">
             <div class="navbar">
@@ -107,22 +104,6 @@
                 </div>
             </div>
         {% endif %}
-        {% if image_bool==1 and session.get('language') == 'ru'%}
-        <button class="btn-pres site-header">
-            <a href="{{ create_presentation_url }}" class="btn-pres-link">
-                <h3 class="h1-text btn-pres-text">{{ '✨ Create a presentation 📊' if session.get('language') == 'en' else '✨ Создать презентацию 📊' }}</h3>
-            </a>
-            <h6 class="btn-pres-text-lower site-text-main">{{ 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, doloribus?' if session.get('language') == 'en' else 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, doloribus?' }}</h6>
-        </button>
-        {% endif %}
-        {% if image_bool==2 and session.get('language') == 'ru'%}
-        <button class="btn-pres site-header">
-            <a href="{{ create_presentation_url }}" class="btn-pres-link">
-                <h3 class="h1-text btn-pres-text">{{ '✨ Create a presentation 📊' if session.get('language') == 'en' else '✨ Создать презентацию 📊' }}</h3>
-            </a>
-            <h6 class="btn-pres-text-lower site-text-main">{{ 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, doloribus?' if session.get('language') == 'en' else 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, doloribus?' }}</h6>
-        </button>
-        {% endif %}
     </main>
     <footer class="footer footer-pic">
         <div class="main-container">
@@ -131,14 +112,14 @@
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {
                         const star = document.getElementById('star');
-                        const currentUrl = window.location.href;  // Получаем текущий URL страницы
+                        const currentUrl = window.location.href;
 
-                        // Проверяем, есть ли текущий URL в избранном
+
                         fetch('/get_favorites')
                             .then(response => response.json())
                             .then(data => {
                                 if (data.favorites && data.favorites.includes(currentUrl)) {
-                                    star.classList.add('filled');  // Если URL уже в избранном, добавляем класс
+                                    star.classList.add('filled');
                                 }
                             });
 
@@ -150,7 +131,7 @@
                                 headers: {
                                     'Content-Type': 'application/json',
                                 },
-                                body: JSON.stringify({ item_url: currentUrl }),  // Отправляем текущий URL
+                                body: JSON.stringify({ item_url: currentUrl }),
                             })
                             .then(response => response.json())
                             .then(data => {
