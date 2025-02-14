@@ -997,4 +997,4 @@ def num_19():
 
 if __name__ == '__main__':
     initialize_db()
-    app.run(debug=True)
+    app.run()
