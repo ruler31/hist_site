@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'History of Everything' if session.get('language') == 'en' else 'История Всего' }}</title>
+    <link rel="stylesheet" href="/static/main.css">
+</head>
+<body>
+
+    <!--Вверх сайта-->
+
+    <header class="header">
+        <div class="main-container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/static/img/Logo-img.png" alt="logo" class="logo-photo">
+                    </a>
+                </div>
+                <div class="navbar-menu">
+                    <div class="review">
+                        <a href="/templates/review.html" class="review-link">
+                            <h4 class="review-link-name navbar-name h4-text">
+                                {{ 'Leave a review about our site!' if session.get('language') == 'en' else 'Оставьте отзыв о нашем сайте!' }}
+                            </h4>
+                        </a>
+                    </div>
+                    <div class="authors">
+                        <a href="/templates/authors.html" class="authors-link">
+                            <h4 class="authors-link-name navbar-name h4-text">
+                                {{ 'The authors of the site' if session.get('language') == 'en' else 'Авторы сайта' }}
+                            </h4>
+                        </a>
+                    </div>
+                    {% if username %}
+                        <div class="user-menu">
+                            <span class="user-name">{{ username }}</span>
+                            <div class="user-dropdown">
+                                <a href="/templates/history.html">{{ 'History' if session.get('language') == 'en' else 'История' }}</a>
+                                <a href="/templates/favourites.html">{{ 'Favorites' if session.get('language') == 'en' else 'Избранное' }}</a>
+                                <a href="/logout">{{ 'Log Out' if session.get('language') == 'en' else 'Выйти' }}</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="registration">
+                            <div class="registration-login">
+                                <a href="/templates/login.html" class="registration-login-link">
+                                    <h5 class="registration-login-link-name h5-text">
+                                        {{ 'Log In' if session.get('language') == 'en' else 'Войти' }}
+                                    </h5>
+                                </a>
+                            </div>
+                            <div class="registration-between-line"></div>
+                            <div class="registration-sign-up">
+                                <a href="/templates/sign-up" class="registration-sign-up-link">
+                                    <h5 class="registration-sign-up-link-name h5-text">
+                                        {{ 'Sign Up' if session.get('language') == 'en' else 'Регистрация' }}
+                                    </h5>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="dropdown-auth-lang dropdown-auth">
+                        <button class="dropbtn-auth dropbtn-auth-lang-pic site-text-main"><img src="/static/img/icons8-гугл-переводчик.svg" alt="#"></button>
+                        <div class="dropdown-auth-content dropdown-auth-content-lang">
+                            <a href="/set_language/ru" class="rs-link menu-link h5-text">Русский</a>
+                            <a href="/set_language/en" class="ea-link menu-link h5-text">English</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="num-container">
+            <div class="main-site-page-header num-header">
+                <h3 class="site-header h1-text num-ru-text">{{ 'Coins of Alexander I' if session.get('language') == 'en' else 'Монеты Александра I' }}</h3>
+            </div>
+            <div class="num-links-to-coins-items">
+                <a href="#A1-pol" class="link-to-coins h5-text">{{ 'For Poland' if session.get('language') == 'en' else 'Для Польши' }}</a>
+                <a href="#A1-trial" class="link-to-coins h5-text">{{ 'Trial' if session.get('language') == 'en' else 'Пробные' }}</a>
+                <a href="#A1-cop" class="link-to-coins h5-text">{{ 'Copper' if session.get('language') == 'en' else 'Медь' }}</a>
+                <a href="#A1-sil" class="link-to-coins h5-text">{{ 'Silver' if session.get('language') == 'en' else 'Серебро' }}</a>
+                <a href="#A1-gold" class="link-to-coins h5-text">{{ 'Gold' if session.get('language') == 'en' else 'Золото' }}</a>
+            </div>
+            <div class="coins-items">
+                <div class="num-coins-category" id="A1-pol">
+                    <div class="main-site-page-header num-coins-header">
+                        <h3 class="site-header h1-text num-coins-text">{{ 'For Poland' if session.get('language') == 'en' else 'Для Польши' }}</h3>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/1-grosh-pol-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/1-grosh-pol-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '1 grosh' if session.get('language') == 'en' else '1 грош' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/3-grosha-pol-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/3-grosha-pol-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '3 grosha' if session.get('language') == 'en' else '3 гроша' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/5-groshey-pol-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/5-groshey-pol-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '5 groshey' if session.get('language') == 'en' else '5 грошей' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/10-groshey-pol-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/10-groshey-pol-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '10 groshey' if session.get('language') == 'en' else '10 грошей' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/1-zlotiy-pol-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/1-zlotiy-pol-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '1 zlotiy' if session.get('language') == 'en' else '1 злотый' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/2-zlotikh-pol-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/2-zlotikh-pol-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '2 zlotikh' if session.get('language') == 'en' else '2 злотых' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/5-zlotix-pol-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/5-zlotix-pol-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '5 zlotikh' if session.get('language') == 'en' else '5 злотых' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/10-zlotix-pol-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/10-zlotix-pol-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '10 zlotikh' if session.get('language') == 'en' else '10 злотых' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/25-zlotix-pol-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/25-zlotix-pol-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '25 zlotikh' if session.get('language') == 'en' else '25 злотых' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/50-zlotix-pol-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/For-Poland/50-zlotix-pol-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '50 zlotikh' if session.get('language') == 'en' else '50 злотых' }}</p>
+                    </div>
+                </div>
+                <div class="num-coins-category" id="A1-trial">
+                    <div class="main-site-page-header num-coins-header">
+                        <h3 class="site-header h1-text num-coins-text">{{ 'Trial' if session.get('language') == 'en' else 'Пробные' }}</h3>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Probniye/polushka-prob-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Probniye/polushka-prob-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Polushka' if session.get('language') == 'en' else 'Полушка' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Probniye/deniga-prob-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Probniye/deniga-prob-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Denga' if session.get('language') == 'en' else 'Деньга' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Probniye/1-kopeyka-prob-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Probniye/1-kopeyka-prob-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '1 kopeyka' if session.get('language') == 'en' else '1 копейка' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Probniye/2-kopeyki-prob-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Probniye/2-kopeyki-prob-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '2 kopeyki' if session.get('language') == 'en' else '2 копейки' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Probniye/5-kopeyek-prob-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Probniye/5-kopeyek-prob-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '5 kopeyek' if session.get('language') == 'en' else '5 копеек' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Probniye/1-ruble-prob-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Probniye/1-ruble-prob-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '1 ruble' if session.get('language') == 'en' else '1 рубль' }}</p>
+                    </div>
+                </div>
+                <div class="num-coins-category" id="A1-cop">
+                    <div class="main-site-page-header num-coins-header">
+                        <h3 class="site-header h1-text num-coins-text">{{ 'Copper' if session.get('language') == 'en' else 'Медь' }}</h3>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Med/polushka-m-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Med/polushka-m-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Polushka' if session.get('language') == 'en' else 'Полушка' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Med/deniga-m-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Med/deniga-m-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Denga' if session.get('language') == 'en' else 'Деньга' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Med/1-kopeyka-m-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Med/1-kopeyka-m-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '1 kopeyka' if session.get('language') == 'en' else '1 копейка' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Med/2-kopeyki-m-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Med/2-kopeyki-m-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '2 kopeyki' if session.get('language') == 'en' else '2 копейки' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Med/5-kopeyek-m-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Med/5-kopeyek-m-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '5 kopeyek' if session.get('language') == 'en' else '5 копеек' }}</p>
+                    </div>
+                </div>
+                <div class="num-coins-category" id="A1-sil">
+                    <div class="main-site-page-header num-coins-header">
+                        <h3 class="site-header h1-text num-coins-text">{{ 'Silver' if session.get('language') == 'en' else 'Серебро' }}</h3>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Serebro/5-kopeyek-s-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Serebro/5-kopeyek-s-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '5 kopeyek' if session.get('language') == 'en' else '5 копеек' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Serebro/10-kopeyek-s-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Serebro/10-kopeyek-s-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '10 kopeyek' if session.get('language') == 'en' else '10 копеек' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Serebro/20-kopeyek-s-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Serebro/20-kopeyek-s-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '20 kopeyek' if session.get('language') == 'en' else '20 копеек' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Serebro/polupoltinnik-s-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Serebro/polupoltinnik-s-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Polupoltinnik' if session.get('language') == 'en' else 'Полуполтинник' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Serebro/poltina-s-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Serebro/poltina-s-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Poltina' if session.get('language') == 'en' else 'Полтина' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Serebro/1-ruble-s-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Serebro/1-ruble-s-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '1 ruble' if session.get('language') == 'en' else '1 рубль' }}</p>
+                    </div>
+                </div>
+                <div class="num-coins-category" id="A1-gold">
+                    <div class="main-site-page-header num-coins-header">
+                        <h3 class="site-header h1-text num-coins-text">{{ 'Gold' if session.get('language') == 'en' else 'Золото' }}</h3>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Zolotie/5-rubles-s-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Zolotie/5-rubles-s-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '5 rubles' if session.get('language') == 'en' else '5 рублей' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Zolotie/10-rubles-s-1-A1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Alexander-1/Zolotie/10-rubles-s-2-A1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ '10 rubles' if session.get('language') == 'en' else '10 рублей' }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="main-container">
+            <div class="contacts">
+                <div class="star" id="star"></div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const star = document.getElementById('star');
+                        const currentUrl = window.location.href;  // Получаем текущий URL страницы
+
+                        // Проверяем, есть ли текущий URL в избранном
+                        fetch('/get_favorites')
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.favorites && data.favorites.includes(currentUrl)) {
+                                    star.classList.add('filled');  // Если URL уже в избранном, добавляем класс
+                                }
+                            });
+
+                        star.addEventListener('click', () => {
+                            const isFilled = star.classList.toggle('filled');
+
+                            fetch('/update_favorites', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ item_url: currentUrl }),  // Отправляем текущий URL
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    console.log('Updated favorites:', data.favorites);
+                                } else {
+                                    console.error('Error updating favorites:', data.message);
+                                }
+                            })
+                            .catch(error => console.error('Fetch error:', error));
+                        });
+                    });
+                </script>
+                <div class="emails">
+                    <div class="contacts-first-text">
+                        <h5 class="contacts-first-text-name h5-text">
+                            {{ 'Have any questions? Write them on those e-mails:' if session.get('language') == 'en' else 'Есть вопросы? Пишите их на эти e-mail:' }}
+                        </h5>
+                    </div>
+                    <div class="emails-names">
+                        <a href="" class="emails-first-link">
+                            <span class="emails-first-link-name emails-link-name">Dictionary-of-evolutions@yandex.ru</span>
+                        </a>
+                    </div>
+                    <div class="contacts-second-text">
+                        <h5 class="contacts-second-text-name h5-text">
+                            {{ 'or in our social media channels:' if session.get('language') == 'en' else 'или в наших социальных сетях:' }}
+                        </h5>
+                    </div>
+                </div>
+                <div class="social-media">
+                    <div class="social-media-icons">
+                        <div class="social-media-icon">
+                            <a href="https://t.me/Dictionary_of_evolutions" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/tg-icon.svg" alt="telegram" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://chat.whatsapp.com/EI1k6oGulP71rzLXWm0Uoy" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/whatsapp-icon.svg" alt="whatsapp" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://invite.viber.com/?g2=AQBcGobe9%2FkLMFPpyrg6hJdaj%2FWY6%2BncEdEC4bGW5MZjZt8xiXyNhx4aecHcTQDk" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/viber-icon.svg" alt="viber" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://vk.com/club228609143" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/vk-icon.svg" alt="VK" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="copyright-info">
+                    <img src="/static/img/copyright-icon.png" alt="copyright" class="copyright-photo">
+                    <span class="copyright-text">2024 - {{ 'History of Everything' if session.get('language') == 'en' else 'История Всего' }}</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

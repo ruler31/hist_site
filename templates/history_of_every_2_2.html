@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'History of Everything' if session.get('language') == 'en' else 'История всего' }}</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <style>
+    @property --gradient-angle {
+          syntax: "<angle>";
+          initial-value: 0turn;
+          inherits: false;
+        }
+
+        .card {
+          animation: 2s gradient-angle infinite linear;
+          border: 2px solid transparent;
+          background-image: linear-gradient(#584827, #2d230f),
+            conic-gradient(
+              from var(--gradient-angle),
+              #584827 0%,
+              #c7a03c 37%,
+              #f9de90 30%,
+              #c7a03c 33%,
+              #584827 40%,
+              #584827 50%,
+              #c7a03c 77%,
+              #f9de90 80%,
+              #c7a03c 83%,
+              #584827 90%
+            );
+          background-clip: padding-box, border-box;
+          background-origin: padding-box, border-box;
+        }
+
+        @keyframes gradient-angle {
+          to {
+            --gradient-angle: 1turn;
+          }
+        }
+
+
+        html,
+
+
+        body {
+          font-family: "游ゴシック Medium", YuGothic, YuGothicM,
+            "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+
+          display: grid;
+          align-content: center;
+          min-height: 100svh;
+
+          color: #d5cec0;
+          gap: 24px;
+
+          @media (width < 970px) {
+            align-content: start;
+          }
+        }
+
+        .container {
+          display: grid;
+          justify-content: center;
+          margin-inline: auto;
+          grid-auto-flow: column;
+          gap: 16px 40px;
+          @media (width < 970px) {
+            grid-auto-flow: row;
+          }
+        }
+
+        .card {
+          display: grid;
+          max-width: 150px;
+          padding: 20px;
+          text-decoration: none;
+          color: currentColor;
+          border-radius: 20px;
+          place-content: center;
+          place-items: center;
+          aspect-ratio: 1/1;
+          row-gap: 16px;
+        }
+
+        .card h2 {
+          font-family: "Comfortaa", sans-serif;
+          font-size: 18px;
+          font-weight: 700;
+          font-style: normal;
+          font-optical-sizing: auto;
+        }
+
+        .card p {
+          font-size: 12px;
+          font-family: "PT Sans", "Arial", sans-serif;
+        }
+
+</style>
+
+</head>
+<body>
+
+    <!--Вверх сайта-->
+
+    <header class="header">
+        <div class="main-container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/static/img/Logo-img.png" alt="logo" class="logo-photo">
+                    </a>
+                </div>
+                <div class="navbar-menu">
+                    <div class="review">
+                        <a href="/templates/review.html" class="review-link">
+                            <h4 class="review-link-name navbar-name h4-text">
+                                {{ 'Leave a review about our site!' if session.get('language') == 'en' else 'Оставьте отзыв о нашем сайте!' }}
+                            </h4>
+                        </a>
+                    </div>
+                    <div class="authors">
+                        <a href="/templates/authors.html" class="authors-link">
+                            <h4 class="authors-link-name navbar-name h4-text">
+                                {{ 'The authors of the site' if session.get('language') == 'en' else 'Авторы сайта' }}
+                            </h4>
+                        </a>
+                    </div>
+                    {% if username %}
+                        <div class="user-menu">
+                            <span class="user-name">{{ username }}</span>
+                            <div class="user-dropdown">
+                                <a href="/templates/history.html">{{ 'History' if session.get('language') == 'en' else 'История' }}</a>
+                                <a href="/templates/favourites.html">{{ 'Favorites' if session.get('language') == 'en' else 'Избранное' }}</a>
+                                <a href="/logout">{{ 'Log Out' if session.get('language') == 'en' else 'Выйти' }}</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="registration">
+                            <div class="registration-login">
+                                <a href="/templates/login.html" class="registration-login-link">
+                                    <h5 class="registration-login-link-name h5-text">
+                                        {{ 'Log In' if session.get('language') == 'en' else 'Войти' }}
+                                    </h5>
+                                </a>
+                            </div>
+                            <div class="registration-between-line"></div>
+                            <div class="registration-sign-up">
+                                <a href="/templates/sign-up" class="registration-sign-up-link">
+                                    <h5 class="registration-sign-up-link-name h5-text">
+                                        {{ 'Sign Up' if session.get('language') == 'en' else 'Регистрация' }}
+                                    </h5>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="dropdown-auth-lang dropdown-auth">
+                        <button class="dropbtn-auth dropbtn-auth-lang-pic site-text-main"><img src="/static/img/icons8-гугл-переводчик.svg" alt="#"></button>
+                        <div class="dropdown-auth-content dropdown-auth-content-lang">
+                            <a href="/set_language/ru" class="rs-link menu-link h5-text">Русский</a>
+                            <a href="/set_language/en" class="ea-link menu-link h5-text">English</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+<div class="container">
+    <a class="card" data-value="Spain_2" href="/templates/history_of_every_3.html" onclick="sendValue(this)">
+        <img alt="Spain" height="40" src="/static/img/counties/spanish.png" width="40" />
+        <h2>{{ 'Spain' if session.get('language') == 'en' else 'Испания' }}</h2>
+        <p>
+            {{ 'A maritime empire that explored and colonized vast parts of the Americas.' if session.get('language') == 'en' else 'Морская империя, которая исследовала и колонизировала обширные части Америки.' }}
+        </p>
+    </a>
+    <a class="card" data-value="Portugal_2" href="/templates/history_of_every_3.html" onclick="sendValue(this)">
+        <img alt="Portugal" height="40" src="/static/img/counties/portugal.png" width="40" />
+        <h2>{{ 'Portugal' if session.get('language') == 'en' else 'Португалия' }}</h2>
+        <p>
+            {{ 'A leading maritime nation, instrumental in early exploration and trade routes to Asia.' if session.get('language') == 'en' else 'Ведущая морская держава, сыгравшая ключевую роль в ранних исследованиях и торговых путях в Азию.' }}
+        </p>
+    </a>
+    <a class="card" data-value="Russian_Empire_2" href="/templates/history_of_every_3.html" onclick="sendValue(this)">
+        <img alt="Russian Empire" height="40" src="/static/img/counties/russia.png" width="40" />
+        <h2>{{ 'Russian Empire' if session.get('language') == 'en' else 'Российская империя' }}</h2>
+        <p>
+            {{ 'A vast empire spanning Eurasia, known for its autocratic rulers and expansionist policies.' if session.get('language') == 'en' else 'Огромная империя, охватывающая Евразию, известная своими автократическими правителями и экспансионистской политикой.' }}
+        </p>
+    </a>
+</div>
+<div class="container">
+    <a class="card" data-value="England_2" href="/templates/history_of_every_3.html" onclick="sendValue(this)">
+        <img alt="England" height="40" src="/static/img/counties/england.png" width="40" />
+        <h2>{{ 'England' if session.get('language') == 'en' else 'Англия' }}</h2>
+        <p>
+            {{ 'The heart of the British Empire, a global maritime power.' if session.get('language') == 'en' else 'Сердце Британской империи, мировая морская держава.' }}
+        </p>
+    </a>
+    <a class="card" data-value="Italy_2" href="/templates/history_of_every_3.html" onclick="sendValue(this)">
+        <img alt="Holy Roman Empire" height="40" src="/static/img/counties/roma_2.png" width="40" />
+        <h2>{{ 'Italy' if session.get('language') == 'en' else 'Италия' }}</h2>
+        <p>
+            {{ 'A complex of territories in Central Europe, significant in European politics.' if session.get('language') == 'en' else 'Комплекс территорий в Центральной Европе, важный для европейской политики.' }}
+        </p>
+    </a>
+    <a class="card" data-value="Kingdom_of_Sweden_2" href="/templates/history_of_every_3.html" onclick="sendValue(this)">
+        <img alt="Kingdom of Sweden" height="40" src="/static/img/counties/sweden.png" width="40" />
+        <h2>{{ 'Kingdom of Sweden' if session.get('language') == 'en' else 'Королевство Швеция' }}</h2>
+        <p>
+            {{ 'A powerful kingdom in Northern Europe, prominent during the 17th century.' if session.get('language') == 'en' else 'Могущественное королевство в Северной Европе, особенно значимое в XVII веке.' }}
+        </p>
+    </a>
+</div>
+<div class="container">
+    <a class="card" data-value="Russian_Empire_2" href="/templates/history_of_every_3.html" onclick="sendValue(this)">
+        <img alt="Russian Empire" height="40" src="/static/img/counties/russia.png" width="40" />
+        <h2>{{ 'Russian Empire' if session.get('language') == 'en' else 'Российская империя' }}</h2>
+        <p>
+            {{ 'A powerful empire spanning Eastern Europe and Asia, known for its vast territories.' if session.get('language') == 'en' else 'Могущественная империя, охватывающая Восточную Европу и Азию, известная своими огромными территориями.' }}
+        </p>
+    </a>
+    <a class="card" data-value="Dutch_Republic_2" href="/templates/history_of_every_3.html" onclick="sendValue(this)">
+        <img alt="Dutch Republic" height="40" src="/static/img/counties/dutch_republic.png" width="40" />
+        <h2>{{ 'Dutch Republic' if session.get('language') == 'en' else 'Республика Соединённых провинций' }}</h2>
+        <p>
+            {{ 'A maritime power and hub of trade and culture during the Golden Age.' if session.get('language') == 'en' else 'Морская держава и центр торговли и культуры в Золотой век.' }}
+        </p>
+    </a>
+    <a class="card" data-value="India_2" href="/templates/history_of_every_3.html" onclick="sendValue(this)">
+        <img alt="Mughal Empire" height="40" src="/static/img/counties/mughal_empire.png" width="40" />
+        <h2>{{ 'India' if session.get('language') == 'en' else 'Индия' }}</h2>
+        <p>
+            {{ 'A powerful empire in India, known for its cultural and architectural achievements.' if session.get('language') == 'en' else 'Могущественная империя в Индии, известная своими культурными и архитектурными достижениями.' }}
+        </p>
+    </a>
+</div>
+
+
+    <div class="container">
+    <a class="card" data-value="Austrian_Empire_2" href="/templates/history_of_every_3.html" onclick="sendValue(this)">
+        <img alt="Austrian Empire" height="40" src="/static/img/counties/austria.png" width="40" />
+        <h2>{{ 'Austrian Empire' if session.get('language') == 'en' else 'Австрийская империя' }}</h2>
+        <p>
+            {{ 'A significant European power, known for its cultural and political influence.' if session.get('language') == 'en' else 'Важная европейская держава, известная своим культурным и политическим влиянием.' }}
+        </p>
+    </a>
+    <a class="card" data-value="Kingdom_of_Prussia_2" href="/templates/history_of_every_3.html" onclick="sendValue(this)">
+        <img alt="Kingdom of Prussia" height="40" src="/static/img/counties/prussia.png" width="40" />
+        <h2>{{ 'Kingdom of Prussia' if session.get('language') == 'en' else 'Королевство Пруссия' }}</h2>
+        <p>
+            {{ 'A German kingdom known for its military strength and role in European unification.' if session.get('language') == 'en' else 'Немецкое королевство, известное своей военной мощью и ролью в объединении Германии.' }}
+        </p>
+    </a>
+</div>
+
+
+
+
+    </footer>
+    <script>
+          function sendValue(element) {
+            const value = element.getAttribute("data-value");
+
+
+            fetch("/button-click", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({ value: value })
+            })
+            .then(response => response.json())
+            .then(data => console.log("Response from server:", data))
+            .catch(error => console.error("Error:", error));
+          }
+    </script>
+    <footer class="footer">
+        <div class="main-container">
+            <div class="contacts">
+                <div class="emails">
+                    <div class="contacts-first-text">
+                        <h5 class="contacts-first-text-name h5-text">
+                            {{ 'Have any questions? Write them on those e-mails:' if session.get('language') == 'en' else 'Есть вопросы? Пишите их на эти e-mail:' }}
+                        </h5>
+                    </div>
+                    <div class="emails-names">
+                        <a href="" class="emails-first-link">
+                            <span class="emails-first-link-name emails-link-name">Dictionary-of-evolutions@yandex.ru</span>
+                        </a>
+                    </div>
+                    <div class="contacts-second-text">
+                        <h5 class="contacts-second-text-name h5-text">
+                            {{ 'or in our social media channels:' if session.get('language') == 'en' else 'или в наших социальных сетях:' }}
+                        </h5>
+                    </div>
+                </div>
+                <div class="social-media">
+                    <div class="social-media-icons">
+                        <div class="social-media-icon">
+                            <a href="https://t.me/Dictionary_of_evolutions" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/tg-icon.svg" alt="telegram" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://chat.whatsapp.com/EI1k6oGulP71rzLXWm0Uoy" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/whatsapp-icon.svg" alt="whatsapp" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://invite.viber.com/?g2=AQBcGobe9%2FkLMFPpyrg6hJdaj%2FWY6%2BncEdEC4bGW5MZjZt8xiXyNhx4aecHcTQDk" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/viber-icon.svg" alt="viber" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://vk.com/club228609143" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/vk-icon.svg" alt="VK" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="copyright-info">
+                    <img src="/static/img/copyright-icon.png" alt="copyright" class="copyright-photo">
+                    <span class="copyright-text">2024 - {{ 'History of Everything' if session.get('language') == 'en' else 'История всего' }}</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+  </body>
+</html>

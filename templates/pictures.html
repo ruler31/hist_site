@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="{{ session.get('language', 'en') }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'History of Everything' if session.get('language') == 'en' else 'История всего' }}</title>
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.css"> <!-- Slick Slider CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick-theme.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Подключаем jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js"></script> <!-- Slick Slider JS -->
+    <script src="/static/script.js"></script>
+</head>
+<body>
+
+    <!--Вверх сайта-->
+
+    <header class="header">
+        <div class="main-container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/static/img/Logo-img.png" alt="logo" class="logo-photo">
+                    </a>
+                </div>
+                <div class="navbar-menu">
+                    <div class="review">
+                        <a href="/templates/review.html" class="review-link">
+                            <h4 class="review-link-name navbar-name h4-text">
+                                {{ 'Leave a review about our site!' if session.get('language') == 'en' else 'Оставьте отзыв о нашем сайте!' }}
+                            </h4>
+                        </a>
+                    </div>
+                    <div class="authors">
+                        <a href="/templates/authors.html" class="authors-link">
+                            <h4 class="authors-link-name navbar-name h4-text">
+                                {{ 'The authors of the site' if session.get('language') == 'en' else 'Авторы сайта' }}
+                            </h4>
+                        </a>
+                    </div>
+                    {% if username %}
+                        <div class="user-menu">
+                            <span class="user-name">{{ username }}</span>
+                            <div class="user-dropdown">
+                                <a href="/templates/history.html">{{ 'History' if session.get('language') == 'en' else 'История' }}</a>
+                                <a href="/templates/favourites.html">{{ 'Favorites' if session.get('language') == 'en' else 'Избранное' }}</a>
+                                <a href="/logout">{{ 'Log Out' if session.get('language') == 'en' else 'Выйти' }}</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="registration">
+                            <div class="registration-login">
+                                <a href="/templates/login.html" class="registration-login-link">
+                                    <h5 class="registration-login-link-name h5-text">
+                                        {{ 'Log In' if session.get('language') == 'en' else 'Войти' }}
+                                    </h5>
+                                </a>
+                            </div>
+                            <div class="registration-between-line"></div>
+                            <div class="registration-sign-up">
+                                <a href="/templates/sign-up" class="registration-sign-up-link">
+                                    <h5 class="registration-sign-up-link-name h5-text">
+                                        {{ 'Sign Up' if session.get('language') == 'en' else 'Регистрация' }}
+                                    </h5>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main-pic">
+        {% if image_bool==1 %}
+        <div class="slider-container">
+            <div class="slick-slider">
+                {% for image in images %}
+                <div>
+                    <img src="data:image/png;base64,{{ image.image_data }}" alt="Предмет 1">
+                    <h2>{{ item_name }} {{ image.century }} {{ 'th century' if session.get('language') == 'en' else '-й век' }}</h2>
+                    <p class="image-text">{{ image.text }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if image_bool==2 %}
+        <div class="slider-container">
+            <div class="slick-slider">
+                {% for image in images %}
+                <div>
+                    <img src="data:image/png;base64,{{ image.image_data }}" alt="Предмет 1">
+                    <h2>{{ item_name }} {{ image.century }} {{ 'th century' if session.get('language') == 'en' else '-й век' }}</h2>
+                    <p class="image-text">{{ image.text }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if image_bool==0 %}
+            <div class="mid-container">
+                <div class="error-msg">
+                    <p class="error-msg-text h4-text">
+                        {{ 'Unfortunately, this item is not yet available in our library 📚. You can add it to our website using this Telegram bot 🤖:' if session.get('language') == 'en' else 'К сожалению, этот элемент пока недоступен в нашей библиотеке 📚. Вы можете добавить его на наш сайт, используя этого Telegram-бота 🤖:' }}
+                        <a href="https://t.me/Dictionary_of_evolutions_bot" class="tg-bot-link">@Dictionary_of_evolutions_bot</a>
+                    </p>
+                </div>
+            </div>
+        {% endif %}
+        {% if image_bool==1 and session.get('language') == 'ru'%}
+        <button class="btn-pres site-header">
+            <a href="{{ create_presentation_url }}" class="btn-pres-link">
+                <h3 class="h1-text btn-pres-text">{{ '✨ Create a presentation 📊' if session.get('language') == 'en' else '✨ Создать презентацию 📊' }}</h3>
+            </a>
+            <h6 class="btn-pres-text-lower site-text-main">{{ 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, doloribus?' if session.get('language') == 'en' else 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, doloribus?' }}</h6>
+        </button>
+        {% endif %}
+        {% if image_bool==2 and session.get('language') == 'ru'%}
+        <button class="btn-pres site-header">
+            <a href="{{ create_presentation_url }}" class="btn-pres-link">
+                <h3 class="h1-text btn-pres-text">{{ '✨ Create a presentation 📊' if session.get('language') == 'en' else '✨ Создать презентацию 📊' }}</h3>
+            </a>
+            <h6 class="btn-pres-text-lower site-text-main">{{ 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, doloribus?' if session.get('language') == 'en' else 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, doloribus?' }}</h6>
+        </button>
+        {% endif %}
+    </main>
+    <footer class="footer footer-pic">
+        <div class="main-container">
+            <div class="contacts">
+                <div class="star" id="star"></div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const star = document.getElementById('star');
+                        const currentUrl = window.location.href;  // Получаем текущий URL страницы
+
+                        // Проверяем, есть ли текущий URL в избранном
+                        fetch('/get_favorites')
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.favorites && data.favorites.includes(currentUrl)) {
+                                    star.classList.add('filled');  // Если URL уже в избранном, добавляем класс
+                                }
+                            });
+
+                        star.addEventListener('click', () => {
+                            const isFilled = star.classList.toggle('filled');
+
+                            fetch('/update_favorites', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ item_url: currentUrl }),  // Отправляем текущий URL
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    console.log('Updated favorites:', data.favorites);
+                                } else {
+                                    console.error('Error updating favorites:', data.message);
+                                }
+                            })
+                            .catch(error => console.error('Fetch error:', error));
+                        });
+                    });
+                </script>
+                <div class="emails">
+                    <div class="contacts-first-text">
+                        <h5 class="contacts-first-text-name h5-text">
+                            {{ 'Have any questions? Write them on those e-mails:' if session.get('language') == 'en' else 'Есть вопросы? Пишите их на эти e-mail:' }}
+                        </h5>
+                    </div>
+                    <div class="emails-names">
+                        <a href="" class="emails-first-link">
+                            <span class="emails-first-link-name emails-link-name">Dictionary-of-evolutions@yandex.ru</span>
+                        </a>
+                    </div>
+                    <div class="contacts-second-text">
+                        <h5 class="contacts-second-text-name h5-text">
+                            {{ 'or in our social media channels:' if session.get('language') == 'en' else 'или в наших социальных сетях:' }}
+                        </h5>
+                    </div>
+                </div>
+                <div class="social-media">
+                    <div class="social-media-icons">
+                        <div class="social-media-icon">
+                            <a href="https://t.me/Dictionary_of_evolutions" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/tg-icon.svg" alt="telegram" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://chat.whatsapp.com/EI1k6oGulP71rzLXWm0Uoy" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/whatsapp-icon.svg" alt="whatsapp" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://invite.viber.com/?g2=AQBcGobe9%2FkLMFPpyrg6hJdaj%2FWY6%2BncEdEC4bGW5MZjZt8xiXyNhx4aecHcTQDk" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/viber-icon.svg" alt="viber" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://vk.com/club228609143" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/vk-icon.svg" alt="VK" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="copyright-info">
+                    <img src="/static/img/copyright-icon.png" alt="copyright" class="copyright-photo">
+                    <span class="copyright-text">2024 - {{ 'History of Everything' if session.get('language') == 'en' else 'История всего' }}</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

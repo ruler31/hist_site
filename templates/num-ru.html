@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'History of Everything' if session.get('language') == 'en' else 'История всего' }}</title>
+    <link rel="stylesheet" href="/static/main.css">
+</head>
+<body>
+    <!--Вверх сайта-->
+    <header class="header">
+        <div class="main-container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/static/img/Logo-img.png" alt="logo" class="logo-photo">
+                    </a>
+                </div>
+                <div class="navbar-menu">
+                    <div class="review">
+                        <a href="/templates/review.html" class="review-link">
+                            <h4 class="review-link-name navbar-name h4-text">
+                                {{ 'Leave a review about our site!' if session.get('language') == 'en' else 'Оставьте отзыв о нашем сайте!' }}
+                            </h4>
+                        </a>
+                    </div>
+                    <div class="authors">
+                        <a href="/templates/authors.html" class="authors-link">
+                            <h4 class="authors-link-name navbar-name h4-text">
+                                {{ 'The authors of the site' if session.get('language') == 'en' else 'Авторы сайта' }}
+                            </h4>
+                        </a>
+                    </div>
+                    {% if username %}
+                        <div class="user-menu">
+                            <span class="user-name">{{ username }}</span>
+                            <div class="user-dropdown">
+                                <a href="/templates/history.html">{{ 'History' if session.get('language') == 'en' else 'История' }}</a>
+                                <a href="/templates/favourites.html">{{ 'Favorites' if session.get('language') == 'en' else 'Избранное' }}</a>
+                                <a href="/logout">{{ 'Log Out' if session.get('language') == 'en' else 'Выйти' }}</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="registration">
+                            <div class="registration-login">
+                                <a href="/templates/login.html" class="registration-login-link">
+                                    <h5 class="registration-login-link-name h5-text">
+                                        {{ 'Log In' if session.get('language') == 'en' else 'Войти' }}
+                                    </h5>
+                                </a>
+                            </div>
+                            <div class="registration-between-line"></div>
+                            <div class="registration-sign-up">
+                                <a href="/templates/sign-up" class="registration-sign-up-link">
+                                    <h5 class="registration-sign-up-link-name h5-text">
+                                        {{ 'Sign Up' if session.get('language') == 'en' else 'Регистрация' }}
+                                    </h5>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="dropdown-auth-lang dropdown-auth">
+                        <button class="dropbtn-auth dropbtn-auth-lang-pic site-text-main"><img src="/static/img/icons8-гугл-переводчик.svg" alt="#"></button>
+                        <div class="dropdown-auth-content dropdown-auth-content-lang">
+                            <a href="/set_language/ru" class="rs-link menu-link h5-text">Русский</a>
+                            <a href="/set_language/en" class="ea-link menu-link h5-text">English</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="num-container">
+            <div class="main-site-page-header num-header num-ru-header">
+                <h3 class="site-header h1-text num-ru-text"> {{ 'Russian leaders' if session.get('language') == 'en' else 'Российские лидеры' }}</h3>
+            </div>
+            <div class="num-leaders">
+                <form class="num-item" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Dmitriy-Donskoy.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Dmitriy Donskoy' if session.get('language') == 'en' else 'Дмитрий Донской' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1359 - 1389</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Vasiliy-1-Dmitrievich.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Vasiliy I Dmitrievich' if session.get('language') == 'en' else 'Василий I Дмитриевич' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1389 - 1425</span>
+                    </div>
+                </form>
+                <form class="num-item num-item-1" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Vasiliy-2-Tyomniy.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Vasiliy II Tyomniy' if session.get('language') == 'en' else 'Василий II Тёмный' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1425 - 1462</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/ivan-III.html" method="get">
+                    <button class="num-leader-pic num-ivan-3" style="background-image: url(/static/img/Numismatic/Russian-Numis/Ivan-3.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Ivan III' if session.get('language') == 'en' else 'Иван III' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1462 - 1505</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic num-vasiliy-3" style="background-image: url(/static/img/Numismatic/Russian-Numis/Vasiliy-3.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Vasiliy III' if session.get('language') == 'en' else 'Василий III' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1505 - 1533</span>
+                    </div>
+                </form>
+                <form class="num-item num-item-1" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Ivan-Grozniy.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Ivan Grozniy' if session.get('language') == 'en' else 'Иван Грозный' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1533 - 1584</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic num-fyodor-1" style="background-image: url(/static/img/Numismatic/Russian-Numis/Fyodor-1.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Fyodor I' if session.get('language') == 'en' else 'Фёдор I' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1584 - 1598</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic num-boris-godunov" style="background-image: url(/static/img/Numismatic/Russian-Numis/Boris-Godunov.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Boris Godunov' if session.get('language') == 'en' else 'Борис Годунов' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1598 - 1605</span>
+                    </div>
+                </form>
+                <form class="num-item num-item-1" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic num-lzhedmitriy-1" style="background-image: url(/static/img/Numismatic/Russian-Numis/Lzhedmitriy-1.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Lzhedmitriy I' if session.get('language') == 'en' else 'Лжедмитрий I' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1605 - 1606</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic num-vasiliy-shuisky" style="background-image: url(/static/img/Numismatic/Russian-Numis/Vasiliy_Shuyskiy.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Vasiliy Shuyisky' if session.get('language') == 'en' else 'Василий Шуйский' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1606 - 1610</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic num-vladislav-4" style="background-image: url(/static/img/Numismatic/Russian-Numis/Vladislav-4.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Vladislav IV' if session.get('language') == 'en' else 'Владислав IV' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1610 - 1612</span>
+                    </div>
+                </form>
+                <form class="num-item num-item-1" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Mikhail-Fyodorovich.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Mikhail Fyodorovich Romanov' if session.get('language') == 'en' else 'Михаил Фёдорович Романов' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1612 - 1645</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Aleksei-Mikhaylovich.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Aleksei Mikhaylovich Romanov' if session.get('language') == 'en' else 'Алексей Михайлович Романов' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1645 - 1676</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic num-vasiliy-3" style="background-image: url(/static/img/Numismatic/Russian-Numis/Fyodor-Alekseivich.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Fyodor Alekseevich Romanov' if session.get('language') == 'en' else 'Фёдор Алексеевич Романов' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1676 - 1682</span>
+                    </div>
+                </form>
+                <form class="num-item num-item-1" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic num-ivan-5" style="background-image: url(/static/img/Numismatic/Russian-Numis/Ivan-5.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Ivan V' if session.get('language') == 'en' else 'Иван V' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1682 - 1696</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/pyotr-I.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Pyotr-1.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Pyotr I' if session.get('language') == 'en' else 'Пётр I' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1682 - 1725</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/catherine-I.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Ekaterina-1.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Catherine I' if session.get('language') == 'en' else 'Екатерина I' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1725 - 1727</span>
+                    </div>
+                </form>
+                <form class="num-item num-item-1" action="/pyotr-II.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Pyotr-2.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Pyotr II' if session.get('language') == 'en' else 'Пётр II' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1727 - 1730</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/anna-ioannovna.html" method="get">
+                    <button class="num-leader-pic num-anna-ioanovna" style="background-image: url(/static/img/Numismatic/Russian-Numis/Anna-Ioannovna.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Anna Ioannovna' if session.get('language') == 'en' else 'Анна Иоанновна' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1730 - 1740</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/ioann-antonovich.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Ioann-Antonovich.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Ioann Antonovich' if session.get('language') == 'en' else 'Иоанн Антонович' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1740 - 1741</span>
+                    </div>
+                </form>
+                <form class="num-item num-item-1" action="/elizaveta-petrovna.html" method="get">
+                    <button class="num-leader-pic num-elizaveta-petrovna" style="background-image: url(/static/img/Numismatic/Russian-Numis/Elizaveta-Petrovna.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Elizaveta Petrovna' if session.get('language') == 'en' else 'Елизавета Петровна' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1741 - 1761</span>
+                    </div>
+                </form>
+                <form class="num-item" action="pyotr-III.html" method="get">
+                    <button class="num-leader-pic num-vladislav-4" style="background-image: url(/static/img/Numismatic/Russian-Numis/Pyotr-3.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Pyotr III' if session.get('language') == 'en' else 'Пётр III' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1761 - 1762</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/catherine-II.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Ekaterina-2.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Catherine II' if session.get('language') == 'en' else 'Екатерина II' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1762 - 1796</span>
+                    </div>
+                </form>
+                <form class="num-item num-item-1" action="/pavel-I.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Pavel-1.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Pavel I' if session.get('language') == 'en' else 'Павел I' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1796 - 1801</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/num-ru_Alexander-1.html" method="get">
+                    <button type="submit" class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Aleksandr-1.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Alexander I' if session.get('language') == 'en' else 'Александр I' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1801 - 1825</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/num-ru_Alexander-1.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Konstantin-Pavlovich.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Konstantin I' if session.get('language') == 'en' else 'Константин I' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1825 - 1825</span>
+                    </div>
+                </form>
+                <form class="num-item num-item-1" action="/nicholas-I.html" method="get">
+                    <button class="num-leader-pic num-vladislav-4" style="background-image: url(/static/img/Numismatic/Russian-Numis/Nicholas-1.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Nicholas I' if session.get('language') == 'en' else 'Николай I' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1825 - 1855</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/num-ru_Alexander-2.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Alexander-2.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Alexander II' if session.get('language') == 'en' else 'Александр II' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1855 - 1881</span>
+                    </div>
+                </form>
+                <form class="num-item" action="/num-ru_Alexander-3.html" method="get">
+                    <button class="num-leader-pic num-alexander-3" style="background-image: url(/static/img/Numismatic/Russian-Numis/Alexander-3.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Alexander III' if session.get('language') == 'en' else 'Александр III' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1881 - 1894</span>
+                    </div>
+                </form>
+                <form class="num-item num-item-1" action="/nicholas-II.html" method="get">
+                    <button class="num-leader-pic" style="background-image: url(/static/img/Numismatic/Russian-Numis/Nicholas-2.png);">
+                        <img src="/static/img/Numismatic/gold-mirror.png" alt="#" class="num-ru-leader-pers">
+                    </button>
+                    <div class="num-descript">
+                        <p class="num-leader-name h5-text">{{ 'Nicholas II' if session.get('language') == 'en' else 'Николай II' }}</p>
+                        <span class="b-t-m-p-b-text num-text-item">1894 - 1917</span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="main-container">
+            <div class="contacts">
+                <div class="emails">
+                    <div class="contacts-first-text">
+                        <h5 class="contacts-first-text-name h5-text">
+                            {{ 'Have any questions? Write them on those e-mails:' if session.get('language') == 'en' else 'Есть вопросы? Пишите их на эти e-mail:' }}
+                        </h5>
+                    </div>
+                    <div class="emails-names">
+                        <a href="" class="emails-first-link">
+                            <span class="emails-first-link-name emails-link-name">Dictionary-of-evolutions@yandex.ru</span>
+                        </a>
+                    </div>
+                    <div class="contacts-second-text">
+                        <h5 class="contacts-second-text-name h5-text">
+                            {{ 'or in our social media channels:' if session.get('language') == 'en' else 'или в наших социальных сетях:' }}
+                        </h5>
+                    </div>
+                </div>
+                <div class="social-media">
+                    <div class="social-media-icons">
+                        <div class="social-media-icon">
+                            <a href="https://t.me/Dictionary_of_evolutions" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/tg-icon.svg" alt="telegram" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://chat.whatsapp.com/EI1k6oGulP71rzLXWm0Uoy" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/whatsapp-icon.svg" alt="whatsapp" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://invite.viber.com/?g2=AQBcGobe9%2FkLMFPpyrg6hJdaj%2FWY6%2BncEdEC4bGW5MZjZt8xiXyNhx4aecHcTQDk" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/viber-icon.svg" alt="viber" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://vk.com/club228609143" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/vk-icon.svg" alt="VK" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="copyright-info">
+                    <img src="/static/img/copyright-icon.png" alt="copyright" class="copyright-photo">
+                    <span class="copyright-text">2024 - {{ 'History of Everything' if session.get('language') == 'en' else 'История всего' }}</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
