@@ -268,14 +268,12 @@
                 <script>
                     document.addEventListener('DOMContentLoaded', () => {
                         const star = document.getElementById('star');
-                        const currentUrl = window.location.href;  // Получаем текущий URL страницы
-
-                        // Проверяем, есть ли текущий URL в избранном
+                        const currentUrl = window.location.href;
                         fetch('/get_favorites')
                             .then(response => response.json())
                             .then(data => {
                                 if (data.favorites && data.favorites.includes(currentUrl)) {
-                                    star.classList.add('filled');  // Если URL уже в избранном, добавляем класс
+                                    star.classList.add('filled');
                                 }
                             });
 
@@ -287,7 +285,7 @@
                                 headers: {
                                     'Content-Type': 'application/json',
                                 },
-                                body: JSON.stringify({ item_url: currentUrl }),  // Отправляем текущий URL
+                                body: JSON.stringify({ item_url: currentUrl }),
                             })
                             .then(response => response.json())
                             .then(data => {

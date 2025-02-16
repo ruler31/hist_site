@@ -680,7 +680,6 @@ def button_click():
 def history_of_ancient_2():
     username = session.get('username')
     value = session.get('value', 'default_value')
-    print(value)
     if value[-1] == "1":
         value = value[:-2]
         conn = sqlite3.connect(f'db/history/History_Of_The_Middle_Ages.db')
@@ -699,7 +698,6 @@ def history_of_ancient_2():
         cursor = conn.cursor()
         cursor.execute(query)
         results = cursor.fetchall()
-        print("heow:", results)
         return render_template('hiatory_of_every_3.html', username=username, events=results)
     elif value[-1] == "0":
         value = value[:-2]
@@ -995,6 +993,72 @@ def num_19():
     username = session.get('username')
     return render_template('numismatic/numis-ru/ru-money/vasiliy-2.html', username=username)
 
+@app.route('/aleksei-mikhaylovich.html')
+def num_20():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/aleksei-mikhaylovich.html', username=username)
+
+
+@app.route('/boris-godunov.html')
+def num_21():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/boris-godunov.html', username=username)
+
+
+@app.route('/fyodor-alekseevich.html')
+def num_22():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/fyodor-alekseevich.html', username=username)
+
+
+@app.route('/fyodor-I.html')
+def num_23():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/fyodor-I.html', username=username)
+
+
+@app.route('/ivan-grozniy.html')
+def num_24():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/ivan-grozniy.html', username=username)
+
+
+@app.route('/ivan-V.html')
+def num_25():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/ivan-V.html', username=username)
+
+
+@app.route('/lzhedmitriy-I.html')
+def num_26():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/lzhedmitriy-I.html', username=username)
+
+
+@app.route('/mikhail-fyodorovich.html')
+def num_27():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/mikhail-fyodorovich.html', username=username)
+
+
+@app.route('/vasiliy-III.html')
+def num_28():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/vasiliy-III.html', username=username)
+
+
+@app.route('/vasiliy-shuisky.html')
+def num_29():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/vasiliy-shuisky.html', username=username)
+
+
+@app.route('/vladislav-IV.html')
+def num_30():
+    username = session.get('username')
+    return render_template('numismatic/numis-ru/ru-money/vladislav-IV.html', username=username)
+
+
 if __name__ == '__main__':
     initialize_db()
-    app.run(app.run(host='0.0.0.0', port=8080) )
+    app.run(app.run(host='0.0.0.0', port=8080))

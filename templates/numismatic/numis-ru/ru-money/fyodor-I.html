@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ 'History of Everything' if session.get('language') == 'en' else 'История Всего' }}</title>
+    <link rel="stylesheet" href="/static/main.css">
+</head>
+<body>
+    <header class="header">
+        <div class="main-container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="/">
+                        <img src="/static/img/Logo-img.png" alt="logo" class="logo-photo">
+                    </a>
+                </div>
+                <div class="navbar-menu">
+                    <div class="review">
+                        <a href="/templates/review.html" class="review-link">
+                            <h4 class="review-link-name navbar-name h4-text">
+                                {{ 'Leave a review about our site!' if session.get('language') == 'en' else 'Оставьте отзыв о нашем сайте!' }}
+                            </h4>
+                        </a>
+                    </div>
+                    <div class="authors">
+                        <a href="/templates/authors.html" class="authors-link">
+                            <h4 class="authors-link-name navbar-name h4-text">
+                                {{ 'The authors of the site' if session.get('language') == 'en' else 'Авторы сайта' }}
+                            </h4>
+                        </a>
+                    </div>
+                    {% if username %}
+                        <div class="user-menu">
+                            <span class="user-name">{{ username }}</span>
+                            <div class="user-dropdown">
+                                <a href="/templates/history.html">{{ 'History' if session.get('language') == 'en' else 'История' }}</a>
+                                <a href="/templates/favourites.html">{{ 'Favorites' if session.get('language') == 'en' else 'Избранное' }}</a>
+                                <a href="/logout">{{ 'Log Out' if session.get('language') == 'en' else 'Выйти' }}</a>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="registration">
+                            <div class="registration-login">
+                                <a href="/templates/login.html" class="registration-login-link">
+                                    <h5 class="registration-login-link-name h5-text">
+                                        {{ 'Log In' if session.get('language') == 'en' else 'Войти' }}
+                                    </h5>
+                                </a>
+                            </div>
+                            <div class="registration-between-line"></div>
+                            <div class="registration-sign-up">
+                                <a href="/templates/sign-up" class="registration-sign-up-link">
+                                    <h5 class="registration-sign-up-link-name h5-text">
+                                        {{ 'Sign Up' if session.get('language') == 'en' else 'Регистрация' }}
+                                    </h5>
+                                </a>
+                            </div>
+                        </div>
+                    {% endif %}
+                    <div class="dropdown-auth-lang dropdown-auth">
+                        <button class="dropbtn-auth dropbtn-auth-lang-pic site-text-main"><img src="/static/img/icons8-гугл-переводчик.svg" alt="#"></button>
+                        <div class="dropdown-auth-content dropdown-auth-content-lang">
+                            <a href="/set_language/ru" class="rs-link menu-link h5-text">Русский</a>
+                            <a href="/set_language/en" class="ea-link menu-link h5-text">English</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="num-container">
+            <div class="main-site-page-header num-header-old">
+                <h3 class="site-header h1-text num-ru-text">{{ 'Coins of Fyodor I "Blissful"' if session.get('language') == 'en' else 'Монеты Фёдора I "Блаженного"' }}</h3>
+            </div>
+            <div class="coins-items">
+                <div class="num-coins-category">
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Fyodor-1/chetveretsa-polushka-novgorod-1-F1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Fyodor-1/chetveretsa-polushka-novgorod-2-F1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Chetveretsa (Polushka), Novgorod coinage' if session.get('language') == 'en' else 'Четверетца (Полушка), Нижегородский чекан' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Fyodor-1/kopeyka-moscow-c-M-1-F1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Fyodor-1/kopeyka-moscow-c-M-2-F1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Kopeyka, Moscow coinage c-M' if session.get('language') == 'en' else 'Копейка, Московский чекан, с-М' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Fyodor-1/kopeyka-moscow-oM-1-F1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Fyodor-1/kopeyka-moscow-oM-2-F1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Kopeyka, Moscow coinage oM' if session.get('language') == 'en' else 'Копейка, Московский чекан, оМ' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Fyodor-1/kopeyka-novgorod-1-F1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Fyodor-1/kopeyka-novgorod-2-F1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Kopeyka, Novgorod coinage' if session.get('language') == 'en' else 'Копейка, Нижегородский чекан' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Fyodor-1/kopeyka-novgorod-B-HOPE-1-F1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Fyodor-1/kopeyka-novgorod-B-HOPE-2-F1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Kopeyka, Novgorod coinage В-НОРЕ' if session.get('language') == 'en' else 'Копейка, Нижегородский чекан В-НОРЕ' }}</p>
+                    </div>
+                    <div class="num-coins-item">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Fyodor-1/kopeyka-pskov-PS-1-F1.png" alt="#" class="coin-picture">
+                        <img src="/static/img/Numismatic/Russian-Numis/Ru-Numismatic-money/Fyodor-1/kopeyka-pskov-PS-2-F1.png" alt="#" class="coin-picture">
+                        <p class="coin-descript h5-text">{{ 'Kopeyka, Pskov coinage ПС' if session.get('language') == 'en' else 'Копейка, Псковский чекан ПС' }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="main-container">
+            <div class="contacts">
+                <div class="star" id="star"></div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const star = document.getElementById('star');
+                        const currentUrl = window.location.href;
+
+
+                        fetch('/get_favorites')
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.favorites && data.favorites.includes(currentUrl)) {
+                                    star.classList.add('filled');
+                                }
+                            });
+
+                        star.addEventListener('click', () => {
+                            const isFilled = star.classList.toggle('filled');
+
+                            fetch('/update_favorites', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ item_url: currentUrl }),
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    console.log('Updated favorites:', data.favorites);
+                                } else {
+                                    console.error('Error updating favorites:', data.message);
+                                }
+                            })
+                            .catch(error => console.error('Fetch error:', error));
+                        });
+                    });
+                </script>
+                <div class="emails">
+                    <div class="contacts-first-text">
+                        <h5 class="contacts-first-text-name h5-text">
+                            {{ 'Have any questions? Write them on those e-mails:' if session.get('language') == 'en' else 'Есть вопросы? Пишите их на эти e-mail:' }}
+                        </h5>
+                    </div>
+                    <div class="emails-names">
+                        <a href="" class="emails-first-link">
+                            <span class="emails-first-link-name emails-link-name">Dictionary-of-evolutions@yandex.ru</span>
+                        </a>
+                    </div>
+                    <div class="contacts-second-text">
+                        <h5 class="contacts-second-text-name h5-text">
+                            {{ 'or in our social media channels:' if session.get('language') == 'en' else 'или в наших социальных сетях:' }}
+                        </h5>
+                    </div>
+                </div>
+                <div class="social-media">
+                    <div class="social-media-icons">
+                        <div class="social-media-icon">
+                            <a href="https://t.me/Dictionary_of_evolutions" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/tg-icon.svg" alt="telegram" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://chat.whatsapp.com/EI1k6oGulP71rzLXWm0Uoy" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/whatsapp-icon.svg" alt="whatsapp" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://invite.viber.com/?g2=AQBcGobe9%2FkLMFPpyrg6hJdaj%2FWY6%2BncEdEC4bGW5MZjZt8xiXyNhx4aecHcTQDk" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/viber-icon.svg" alt="viber" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                        <div class="social-media-icon">
+                            <a href="https://vk.com/club228609143" target="_blank" class="social-media-icon-link">
+                                <img src="/static/img/Social media icons/vk-icon.svg" alt="VK" class="social-media-icon-photo">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="copyright-info">
+                    <img src="/static/img/copyright-icon.png" alt="copyright" class="copyright-photo">
+                    <span class="copyright-text">2024 - {{ 'History of Everything' if session.get('language') == 'en' else 'История Всего' }}</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -115,6 +115,43 @@
     <footer class="footer">
         <div class="main-container">
             <div class="contacts">
+                <div class="star" id="star"></div>
+                <script>
+                    document.addEventListener('DOMContentLoaded', () => {
+                        const star = document.getElementById('star');
+                        const currentUrl = window.location.href;
+
+
+                        fetch('/get_favorites')
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.favorites && data.favorites.includes(currentUrl)) {
+                                    star.classList.add('filled');
+                                }
+                            });
+
+                        star.addEventListener('click', () => {
+                            const isFilled = star.classList.toggle('filled');
+
+                            fetch('/update_favorites', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ item_url: currentUrl }),
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    console.log('Updated favorites:', data.favorites);
+                                } else {
+                                    console.error('Error updating favorites:', data.message);
+                                }
+                            })
+                            .catch(error => console.error('Fetch error:', error));
+                        });
+                    });
+                </script>
                 <div class="emails">
                     <div class="contacts-first-text">
                         <h5 class="contacts-first-text-name h5-text">
